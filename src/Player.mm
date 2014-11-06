@@ -24,21 +24,30 @@ void Player::init(int x, int y, int s, b2World* b2dWorld){
 
     physicsBody.setData(this);
     physicsBody.bodyDef.userData = this;
-    img.loadImage("earth2.png");
+    //img.loadImage("lines.png");
     
-    cout << tag << endl;
-    
+    //cout << tag << endl;
+    int resolution = 15;
+    spherePrimitive.set(size, resolution);
+    sphereVerticles = spherePrimitive.getMesh().getVertices();
+    sphereMesh.setMode(OF_PRIMITIVE_LINES);
+    for (int i=0; i<sphereVerticles.size(); i++) {
+        ofVec3f newVec(sphereVerticles[i].x+ofRandom(-3,3),sphereVerticles[i].y+ofRandom(-3,3),sphereVerticles[i].z+ofRandom(-3,3));
+        sphereMesh.addVertex(newVec);
+    }
 };
 
 void Player::draw()
 {
     ofNoFill();
+    ofSetLineWidth(1.4);
     ofPushMatrix();
     ofTranslate(xPos, yPos);
     ofSetColor(255, 255, 255);
     ofRotate(physicsBody.getRotation());
+    sphereMesh.draw();
     //ofDrawSphere(0, 0, size);
-    img.draw(-30, -30, size*2.5,size*2.5);
+    //img.draw(-30, -30, size*2.5,size*2.5);
     ofPopMatrix();
 }
 

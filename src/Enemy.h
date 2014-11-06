@@ -20,7 +20,7 @@ class Enemy : public GameElement {
     public:
     Enemy();
     Enemy(int x, int y, int s);
-    void init(b2World* b2dWorld);
+    void init(b2World* _b2dWorld);
     void draw();
     void update();
     bool checkCollision(ofVec2f pos, float radius);
@@ -32,8 +32,10 @@ class Enemy : public GameElement {
     int numParticles;
     int currentNumParticles;
     bool particlesCaged = true;
+    b2World* b2dWorld;
     ofTexture tex;
-    ofPtr<ofxBox2dCircle> physicsBody;
+    vector <ofPtr<ofxBox2dCircle> >	physicsBodies;
+    //ofxBox2dCircle	physicsBody;
     ofImage img;
     
     vector<Particle> particles;

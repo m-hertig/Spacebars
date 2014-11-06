@@ -19,14 +19,12 @@ void Particle::draw(){
 
 
 void Particle::move(){
-        
     if(pos.y>ofGetHeight()+r || pos.y < 0-r || pos.x>ofGetWidth()+r || pos.x < 0-r) {
             pos.x=ofRandom(ofGetWidth());
             pos.y=ofGetHeight();
     }
         pos.x+=vel.x;
         pos.y+=vel.y;
-
 };
 
 void Particle::moveCircular(float pivotX,float pivotY) {

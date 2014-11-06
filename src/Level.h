@@ -19,15 +19,16 @@ public:
     void init(b2World* _b2dWorld);
     void setEnemies(vector<ofVec2f>,int _s);
     void setObstacles(vector<ofVec2f>,int _s);
+    void setObstacle(int x, int y, int w, int h, int ang);
     void setGoal(ofVec2f);
     void destroy();
 
     int numEnemies;
-    int numObstacles;
     b2World* b2dWorld;
     Goal goal;
+    vector<Obstacle> obstacles;
     Enemy** enemies; // an array of pointers
-    Obstacle** obstacles; // also an array of pointers
+    //Obstacle** obstacles; // also an array of pointers
     
 };
 

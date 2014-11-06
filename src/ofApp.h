@@ -13,7 +13,7 @@
 #include "Goal.h"
 #include "Particle.h"
 
-#define NLEVELS 5
+#define NLEVELS 6
 #define NPARTICLES 400
 
 class ofApp : public ofxiOSApp {
@@ -44,6 +44,7 @@ public:
 	void contactEnd(ofxBox2dContactArgs &e);
     void createLevels();
     void initLevel();
+    void displayNextBtn();
     
     ofTexture texFlimmer;
     int texW;
@@ -55,11 +56,14 @@ public:
     bool isGoal;
     bool isDead;
     bool subtractBoxLength;
+    bool nextBtnDisplayed;
+    bool gameFinished;
     int currentLevel;
     int boxesUsed;
     int boxLength;
     int maxBoxLength;
     int currentNumParticles;
+    int nextBtnX,nextBtnY,nextBtnW,nextBtnH;
     ofImage bgImage;
     ofTrueTypeFont font;
     ofImage barsTexture;
@@ -67,8 +71,10 @@ public:
     ofxBox2dCircle goalBody;
     ofVec2f goalPos;
     ofxBox2d  box2d;	//	the box2d world
-    vector <ofSoundPlayer> pianoSounds;
-    int pianoSoundsIndex;
+    vector <ofSoundPlayer> collisionSounds;
+    vector <ofSoundPlayer> loopSounds;
+    int collisionSoundsIndex;
+    int loopSoundsIndex;
     vector    <ofPtr<ofxBox2dCircle> >	circles;
     vector<Particle> particles;
     

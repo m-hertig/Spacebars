@@ -3,7 +3,6 @@
 
 Level::Level(){
     numEnemies = 0;
-    numObstacles = 0;
 };
 void Level::init(b2World* _b2dWorld){
     b2dWorld = _b2dWorld;
@@ -12,8 +11,8 @@ void Level::init(b2World* _b2dWorld){
     for (int i=0; i<numEnemies;i++) {
         enemies[i]->init(b2dWorld);
     }
-    for (int i=0; i<numObstacles;i++) {
-        obstacles[i]->init(b2dWorld);
+    for (int i=0; i<obstacles.size();i++) {
+        obstacles[i].init(b2dWorld);
     }
 };
 
@@ -26,12 +25,16 @@ void Level::setEnemies(vector<ofVec2f> vec, int _s){
 };
 
 void Level::setObstacles(vector<ofVec2f> vec, int _s){
-    numObstacles = vec.size();
-    obstacles = new Obstacle*[numObstacles];
-    for (int i=0; i<vec.size(); i++) {
-        obstacles[i] = new Obstacle(vec[i].x,vec[i].y,_s);
-    }
+//    numObstacles = vec.size();
+//    obstacles = new Obstacle*[numObstacles];
+//    for (int i=0; i<vec.size(); i++) {
+//        obstacles[i] = new Obstacle(vec[i].x,vec[i].y,_s);
+//    }
+};
 
+void Level::setObstacle(int x, int y, int w, int h, int ang) {
+    Obstacle obs = Obstacle(x, y, w,h,ang);
+    obstacles.push_back(obs);
 };
 
 void Level::setGoal(ofVec2f vec){
@@ -42,12 +45,11 @@ void Level::setGoal(ofVec2f vec){
 
 void Level::destroy() {
     goal.physicsBody.destroy();
-    for (int i=0; i<numObstacles; i++) {
-        obstacles[i]->physicsBody.destroy();
+    for (int i=0; i<obstacles.size(); i++) {
+        obstacles[i].destroyPhysicsBody();
     }
     for (int i=0; i<numEnemies; i++) {
-        enemies[i]->physicsBody->destroy();
+        enemies[i]->destroyPhysicsBody();
     }
-    
 }
 

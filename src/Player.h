@@ -24,6 +24,9 @@ public:
     int yPos;
     int size;
     ofImage img;
+    ofSpherePrimitive spherePrimitive;
+    vector<ofVec3f> sphereVerticles;
+    ofMesh sphereMesh;
     ofxBox2dCircle physicsBody;
     
     //string tag="player";

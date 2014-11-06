@@ -27,7 +27,6 @@ public:
     ofImage img;
     b2World* b2dWorld;
     ofxBox2dCircle physicsBody;
-	vector <ofPtr<ofxBox2dEdge> >       edges;
 };
 
 #endif

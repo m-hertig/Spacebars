@@ -47,24 +47,6 @@ void Boxes::update()
             boxes[i].get()->setVelocity(0, -3);
             //ofLog() << boxes[i].get()->getVelocity();
         }
-//        if (player.physicsBody.getPosition().distance(boxes[i].get()->getPosition())<player.size+10) {
-//            // Configure sound
-//            int note_number = 36 + boxes[i].get()->getPosition().y / ofGetWidth() * kKeyRange;
-//            int rect_height = ofGetHeight() / kPolyphonyVoices;
-//            int program_index = boxes[i].get()->getPosition().x  / rect_height;
-//            if (program_index == 4) program_index = 3;
-//            tone_->setProgram(kPresetTable[program_index]);
-//            int tone_y = static_cast<int>(boxes[i].get()->getPosition().x) % rect_height;
-//            int volume_env_rate = static_cast<float>(tone_y) / rect_height * 127;
-//            tone_->setVolumeEnvRate(volume_env_rate);
-//            tone_->play(note_number,
-//                        1.0,    // volume
-//                        0.5);  // pan
-//            lastTonePlayedTime = ofGetElapsedTimef();
-//        } else if (abs(lastTonePlayedTime-ofGetElapsedTimef())>0.5) {
-//            //ofLog() << "Stop";
-//            tone_->stop();
-//        }
     }
 }
 
@@ -84,12 +66,12 @@ void Boxes::add(ofVec2f vec,int length) {
         }
     }
     ofPtr<ofxBox2dRect> rect = ofPtr<ofxBox2dRect>(new ofxBox2dRect);
-    rect.get()->setPhysics(100, 0.2, 0.5);
+    rect.get()->setPhysics(1000, 0.2, 0.5);
     rect.get()->setup(b2dWorld, vec.x, vec.y, 10, 10);
-    rect.get()->enableGravity(false);
+    //rect.get()->enableGravity(false);
     rect.get()->setVelocity(0, -5);
-    rect.get()->setData(this);
-    rect.get()->bodyDef.userData = this;
+//    rect.get()->setData(this);
+//    rect.get()->bodyDef.userData = this;
     boxes.push_back(rect);
     boxLengths.push_back(length);
     //boxes.back().get()->bodyDef = b2_staticBody;

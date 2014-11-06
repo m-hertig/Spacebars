@@ -41,7 +41,7 @@ void ofApp::setup(){
     }
     currentNumParticles = 0;
     currentLevel = 0;
-    playerSize = 30;
+    playerSize = 25;
     font.loadFont("fonts/OratorStd.otf", 50);
     
     createLevels();
@@ -51,7 +51,6 @@ void ofApp::setup(){
         ofSoundPlayer collisionSound = ofSoundPlayer();
         string path = "sounds/sfx/"+ofToString(i)+".mp3";
         collisionSound.loadSound(path);
-        collisionSound.setVolume(0.7);
         collisionSounds.push_back(collisionSound);
     }
     for (int i=0; i<7; i++) {
@@ -59,7 +58,6 @@ void ofApp::setup(){
         string path = "sounds/test/"+ofToString(i)+".mp3";
         cout << path << endl;
         loopSound.loadSound(path);
-        loopSound.setVolume(0.7);
         loopSounds.push_back(loopSound);
     }
     collisionSoundsIndex = 0;
@@ -455,14 +453,6 @@ void ofApp::createLevels() {
     
     
     enemies.push_back(ofVec2f(200,500));
-    enemies.push_back(ofVec2f(500,400));
-    enemies.push_back(ofVec2f(ofGetWidth()/2,100));
-    levels[1].setObstacle(200,ofGetHeight()/2,420, 6, 0);
-    levels[1].setObstacle(ofGetWidth()/2-3,200,6, 400, 90);
-    levels[1].setEnemies(enemies, 100);
-    enemies.clear();
-    
-    enemies.push_back(ofVec2f(200,500));
     //enemies.push_back(ofVec2f(500,400));
     enemies.push_back(ofVec2f(ofGetWidth()/2,700));
 //    obstacles.push_back(ofVec2f(300,300));
@@ -470,11 +460,20 @@ void ofApp::createLevels() {
  //   levels[3].setGoal(ofVec2f(400,200));
 //    levels[3].setObstacle(ofGetWidth()/4,ofGetHeight()/4,400, 6, 45);
 //    levels[3].setObstacle(ofGetWidth()/4*3,ofGetHeight()/4*3,400, 6, 135);
-    levels[2].setObstacle(ofGetWidth()/2,ofGetHeight()/2,900, 6, 45);
-    levels[2].setObstacle(ofGetWidth()/2,ofGetHeight()/2,900, 6, 135);
-    levels[2].setEnemies(enemies, 50);
+    levels[1].setObstacle(ofGetWidth()/2,ofGetHeight()/2,1000, 6, 45);
+    levels[1].setObstacle(ofGetWidth()/2,ofGetHeight()/2,1000, 6, 135);
+    levels[1].setEnemies(enemies, 50);
     enemies.clear();
-
+    
+    
+    enemies.push_back(ofVec2f(200,500));
+    enemies.push_back(ofVec2f(500,400));
+    enemies.push_back(ofVec2f(ofGetWidth()/2,100));
+    levels[2].setObstacle(200,ofGetHeight()/2,420, 6, 0);
+    levels[2].setObstacle(ofGetWidth()/2-3,200,6, 400, 90);
+    levels[2].setEnemies(enemies, 100);
+    enemies.clear();
+    
     enemies.push_back(ofVec2f(100,410));
     enemies.push_back(ofVec2f(600,450));
     for (int i=0; i<4; i++) {
@@ -488,9 +487,9 @@ void ofApp::createLevels() {
     
     enemies.push_back(ofVec2f(200,500));
     enemies.push_back(ofVec2f(600,400));
-    levels[4].setObstacle(ofGetWidth()/2-100,3,ofGetWidth()-100, 6, 0);
+    levels[4].setObstacle(ofGetWidth()/2,3,ofGetWidth()-100, 6, 0);
     levels[4].setObstacle(ofGetWidth()/2-3,ofGetHeight()/2,6, ofGetHeight(), 0);
-    levels[4].setObstacle(ofGetWidth()/2+100,ofGetHeight()-3,ofGetWidth()-150, 6, 0);
+    levels[4].setObstacle(ofGetWidth()/2,ofGetHeight()-3,ofGetWidth()-150, 6, 0);
     levels[4].setObstacle(3,ofGetHeight()/2,6,ofGetHeight()-100, 0);
     levels[4].setObstacle(ofGetWidth()-3,ofGetHeight()/2,6,ofGetHeight()-150, 0);
     levels[4].setEnemies(enemies, 100);
